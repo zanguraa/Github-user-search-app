@@ -2,19 +2,21 @@ import React from "react";
 import styled from "styled-components";
 import SearchImg from "./assets/icon-search.svg";
 
-export default function Search() {
+export default function Search({ blackTheme, setSearch }) {
   const SubmitHandler = (e) => {
     e.preventDefault();
+    setSearch(e.target.search.value)
   };
 
   return (
-    <FormContainer onSubmit={SubmitHandler}>
+    <FormContainer blackTheme={blackTheme} onSubmit={SubmitHandler}>
       <label htmlFor="search">
         <img src={SearchImg} alt="search" />
         <input
           type="search"
           id="search"
           placeholder="Search GitHub username..."
+          defaultValue="zanguraa"
         />
       </label>
       <button>Search</button>
@@ -27,7 +29,8 @@ const FormContainer = styled.form`
   align-items: center;
   justify-content: center;
   gap: 7px;
-  background: #fefefe;
+  transition: all 0.5s;
+  background: ${props => props.blackTheme ? "#fefefe" : "#1E2A47"} ;
   box-shadow: 0px 16px 30px -10px rgba(70, 96, 187, 0.198567);
   border-radius: 15px;
   height: 60px;
@@ -47,6 +50,7 @@ const FormContainer = styled.form`
     font-size: 11px;
     line-height: 25px;
     color: #4b6a9b;
+    background-color: transparent;
     width: 184px;
   }
 
