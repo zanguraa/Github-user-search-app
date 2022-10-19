@@ -1,20 +1,19 @@
 import React from "react";
 import styled from "styled-components";
 import Moon from "./assets/icon-moon.svg";
-import Sun from "./assets/icon-sun.svg"
+import Sun from "./assets/icon-sun.svg";
 
-export default function Header({blackTheme, setBlackTheme}) {
-
-  const changeColor = ()=> {
-    setBlackTheme(prev => !prev);
-  }
+export default function Header({ blackTheme, setBlackTheme }) {
+  const changeColor = () => {
+    setBlackTheme((prev) => !prev);
+  };
 
   return (
     <HeaderContainer blackTheme={blackTheme}>
       <h1>devfinder</h1>
-      <DarkContainer  blackTheme={blackTheme}>
+      <DarkContainer blackTheme={blackTheme}>
         <h2>{blackTheme ? "DARK" : "LIGHT"}</h2>
-        <img src={blackTheme ? Moon : Sun } onClick={changeColor} alt="moon" />
+        <img src={blackTheme ? Moon : Sun} onClick={changeColor} alt="moon" />
       </DarkContainer>
     </HeaderContainer>
   );
@@ -32,7 +31,7 @@ const HeaderContainer = styled.div`
     font-size: 26px;
     line-height: 39px;
     margin: 0;
-    color: ${props => props.blackTheme ? "#222731" : "#FFF"} ;
+    color: ${(props) => (props.blackTheme ? "#222731" : "#FFF")};
   }
 `;
 
@@ -42,11 +41,11 @@ const DarkContainer = styled.div`
   gap: 16px;
   /* width: 78px; */
   height: 20px;
- 
+
   h2 {
     margin: 0;
-    color: ${props => props.blackTheme ? "#4b6a9b" : "#FFF"} ;
-    
+    color: ${(props) => (props.blackTheme ? "#4b6a9b" : "#FFF")};
+   
   }
   img {
     cursor: pointer;

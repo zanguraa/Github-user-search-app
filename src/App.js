@@ -7,13 +7,20 @@ import UserInfo from "./components/UserInfo";
 function App() {
   const [blackTheme, setBlackTheme] = useState(true);
   const [search, setSearch] = useState("zanguraa");
-  const [result, setResult] = useState(true); 
+  const [result, setResult] = useState(true);
 
   return (
     <Main blackTheme={blackTheme}>
-      <Header blackTheme={blackTheme} setBlackTheme={setBlackTheme} />
-      <Search blackTheme={blackTheme} setSearch={setSearch} />
-      <UserInfo blackTheme={blackTheme} search={search} result={result} setResult={setResult}  />
+      <Wrapper>
+        <Header blackTheme={blackTheme} setBlackTheme={setBlackTheme} />
+        <Search result={result} blackTheme={blackTheme} setSearch={setSearch} />
+        <UserInfo
+          blackTheme={blackTheme}
+          search={search}
+          result={result}
+          setResult={setResult}
+        />
+      </Wrapper>
     </Main>
   );
 }
@@ -21,11 +28,39 @@ function App() {
 export default App;
 
 const Main = styled.div`
-display: flex;
-flex-direction: column;
-gap: 1rem;
+ 
+  display: flex;
+  align-items: center;
+  flex-direction: column;
   height: 100vh;
   transition: all 0.5s;
-  background: ${props => props.blackTheme ? '#F6F8FF' : '#141D2F'};
+  background: ${(props) => (props.blackTheme ? "#F6F8FF" : "#141D2F")};
   padding: 31px 24px 0 24px;
+  @media (min-width: 768px) {
+    margin: auto;
+    height: 100vh;
+    
+  }
+  @media (min-width: 1440px) {
+    margin: auto;
+    
+  }
+`;
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  gap: 1rem;
+  max-width: 327px;
+  @media (min-width: 768px) {
+    max-width: 573px;
+    margin-top: 140px;
+    margin-bottom: 100px;
+  }
+  @media (min-width: 1440px) {
+    max-width: 730px;
+    margin-top: 144px;
+    
+  }
 `;

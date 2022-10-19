@@ -2,10 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import SearchImg from "./assets/icon-search.svg";
 
-export default function Search({ blackTheme, setSearch }) {
+export default function Search({ result, blackTheme, setSearch }) {
   const SubmitHandler = (e) => {
     e.preventDefault();
-    setSearch(e.target.search.value)
+    setSearch(e.target.search.value);
   };
 
   return (
@@ -19,6 +19,7 @@ export default function Search({ blackTheme, setSearch }) {
           defaultValue="zanguraa"
         />
       </label>
+      {!result ? <ErrorSpan> no result</ErrorSpan> : ""}
       <button>Search</button>
     </FormContainer>
   );
@@ -27,14 +28,15 @@ export default function Search({ blackTheme, setSearch }) {
 const FormContainer = styled.form`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  padding: 0 0.5rem;
   gap: 7px;
   transition: all 0.5s;
-  background: ${props => props.blackTheme ? "#fefefe" : "#1E2A47"} ;
+  background: ${(props) => (props.blackTheme ? "#fefefe" : "#1E2A47")};
   box-shadow: 0px 16px 30px -10px rgba(70, 96, 187, 0.198567);
   border-radius: 15px;
   height: 60px;
-
+cursor: pointer;
   label {
     display: flex;
     align-items: center;
@@ -51,7 +53,20 @@ const FormContainer = styled.form`
     line-height: 25px;
     color: #4b6a9b;
     background-color: transparent;
-    width: 184px;
+    width: 100%;
+    &::-ms-clear { display: none; width : 0; height: 0; }
+      &::-ms-reveal { display: none; width : 0; height: 0; }
+      &::-webkit-search-decoration,
+      &::-webkit-search-cancel-button,
+      &::-webkit-search-results-button,
+      &::-webkit-search-results-decoration { display: none; }
+    @media (min-width: 768px) {
+      width: 300px;
+    }
+  }
+
+  span {
+    color: red;
   }
 
   button {
@@ -69,5 +84,20 @@ const FormContainer = styled.form`
       background: #60abff;
       cursor: pointer;
     }
+  }
+
+  @media (min-width: 768px) {
+    padding: 0 1rem 0 2rem;
+  }
+`;
+
+const ErrorSpan = styled.h5`
+  color: red;
+  padding: 0;
+  margin: 0;
+  white-space: nowrap;
+  @media (min-width: 768px) {
+    font-size: 15px;
+    font-weight: 700;
   }
 `;
