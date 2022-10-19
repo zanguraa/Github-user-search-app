@@ -241,6 +241,7 @@ const Contact = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  cursor: pointer;
   span{
     color: ${(props) => (props.blackTheme ? "#4B6A9B" : "#FFFFFF")};
    
